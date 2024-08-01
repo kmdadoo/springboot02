@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence 
+                        https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+    version="3.0">
+             
+    <persistence-unit name="JpaEx01" transaction-type="RESOURCE_LOCAL">
+    	<class>exam1.Member1</class>	 
+<!--     	<class>exam2.Member2</class>	이것을  persistence-unit으로 사용 -->
+    	<!--
+    	<class>exam3.Member3</class>
+    	<class>exam4.Member4</class>
+    	-->
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+        	<!-- 필수 -->
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="oracle.jdbc.OracleDriver" />
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:oracle:thin:@localhost:1521/xe" />
+            <property name="jakarta.persistence.jdbc.user" value="scott" />
+            <property name="jakarta.persistence.jdbc.password" value="TIGER" />
+
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.OracleDialect" />
+
+			<!-- 옵션 -->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.id.new_generator_mappings" value="true" />
+            <!-- create 로 되어있으면 매번 실행 할때마다 테이블이 새로생김. 테스트할때만 함. -->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+
+        </properties>
+
+    </persistence-unit>
+</persistence>
